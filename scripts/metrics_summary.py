@@ -126,3 +126,22 @@ if 'availability_365' in df.columns:
 
 # Then save again
 df.to_csv("data/cleaned/airbnb_with_features.csv", index=False)
+
+# the above code did not work to import the file to ssms so here we go again 
+
+# Fix "minimum nights" to integer
+if 'minimum nights' in df.columns:
+    df['minimum nights'] = (
+        pd.to_numeric(df['minimum nights'], errors='coerce')
+        .fillna(0)
+        .astype(int)
+    )
+
+# Fix "availability 365" to integer
+if 'availability 365' in df.columns:
+    df['availability 365'] = (
+        pd.to_numeric(df['availability 365'], errors='coerce')
+        .fillna(0)
+        .astype(int)
+    )
+
