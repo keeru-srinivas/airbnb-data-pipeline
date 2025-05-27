@@ -113,3 +113,16 @@ print(df['is_high_demand_listing'].value_counts())
 # Save the final dataset
 df.to_csv("data/cleaned/airbnb_with_features.csv", index=False)
 print("\n Final dataset saved with updated 'is_high_demand_listing' column!")
+
+
+
+# Fix minimum_nights to integer
+if 'minimum_nights' in df.columns:
+    df['minimum_nights'] = df['minimum_nights'].fillna(0).astype(int)
+
+# Fix availability_365 to integer
+if 'availability_365' in df.columns:
+    df['availability_365'] = df['availability_365'].fillna(0).astype(int)
+
+# Then save again
+df.to_csv("data/cleaned/airbnb_with_features.csv", index=False)
